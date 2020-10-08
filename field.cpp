@@ -349,7 +349,7 @@ void Field::show_war_fog()
         std::cout << "\n";
     }
 }
-
+ //
 Ship& Field::get_ship(const int &x, const int &y)
 {
     if(is_ship(x,y))
