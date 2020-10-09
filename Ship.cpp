@@ -76,7 +76,7 @@ bool Ship::get_is_destroyed()
     return is_destroyed;
 }
 
-std::vector<std::pair<int, int> > &Ship::get_coordinates()
+std::vector<std::pair<int, int> > Ship::get_coordinates()
 {
     std::vector<std::pair<int, int>> coordinates;
     for(auto &a : coordinates_with_values)

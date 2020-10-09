@@ -40,7 +40,7 @@ public:
 
     bool get_is_destroyed();
 
-    std::vector<std::pair<int, int> > &get_coordinates();
+    std::vector<std::pair<int, int> > get_coordinates();
 };
 
 #endif // SHIP_H
