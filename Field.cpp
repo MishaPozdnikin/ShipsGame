@@ -230,16 +230,74 @@ void Field::destroy_enemys_ship(const int& x, const int& y)
         curr_ships_num--;
         draw_ship_perimetr_with_tried_sign(&get_ship(x,y));
         std::cout << "Destroyed!\n";
-
     }
 }
 
 void Field::draw_ship_perimetr_with_tried_sign(Ship *sh)
 {
     std::vector<std::pair<int,int>> ship_coordinates = sh->get_coordinates();
+    int x,
+        y;
     for(int i = 0; i < sh->get_deck_number(); i++)
     {
-        //if(arr[ship_coordinates[i].second+1][ship_coordinates[i].first])
+        x = ship_coordinates[i].first;
+        y = ship_coordinates[i].second;
+        if(arr[y+1][x] != border_sign && 
+           arr[y+1][x] != ship_sign   && 
+           arr[y+1][x] != destroyed_sign   && 
+           arr[y+1][x] != tried_sign)
+        {
+            arr[y+1][x] = tried_sign;
+        }
+        if(arr[y-1][x] != border_sign && 
+           arr[y-1][x] != ship_sign   &&
+           arr[y-1][x] != destroyed_sign   && 
+           arr[y-1][x] != tried_sign)
+        {
+            arr[y-1][x] = tried_sign;
+        }
+        if(arr[y][x+1] != border_sign && 
+           arr[y][x+1] != ship_sign   && 
+           arr[y][x+1] != destroyed_sign   && 
+           arr[y][x+1] != tried_sign)
+        {
+            arr[y][x+1] = tried_sign;
+        }
+        if(arr[y][x-1] != border_sign && 
+           arr[y][x-1] != ship_sign   && 
+           arr[y][x-1] != destroyed_sign   &&
+           arr[y][x-1] != tried_sign)
+        {
+            arr[y][x-1] = tried_sign;
+        }
+        if(arr[y+1][x+1] != border_sign && 
+           arr[y+1][x+1] != ship_sign   && 
+           arr[y+1][x+1] != destroyed_sign   && 
+           arr[y+1][x+1] != tried_sign)
+        {
+            arr[y+1][x+1] = tried_sign;
+        }
+        if(arr[y+1][x-1] != border_sign && 
+           arr[y+1][x-1] != ship_sign   &&  
+           arr[y+1][x-1] != destroyed_sign   &&        
+           arr[y+1][x-1] != tried_sign)             
+        {                                           
+            arr[y+1][x-1] = tried_sign;
+        }
+        if(arr[y-1][x-1] != border_sign && 
+           arr[y-1][x-1] != ship_sign   &&
+           arr[y-1][x-1] != destroyed_sign   && 
+           arr[y-1][x-1] != tried_sign)
+        {
+            arr[y-1][x-1] = tried_sign;
+        }
+        if(arr[y-1][x+1] != border_sign && 
+           arr[y-1][x+1] != ship_sign   && 
+           arr[y-1][x+1] != destroyed_sign   &&
+           arr[y-1][x+1] != tried_sign)
+        {
+            arr[y-1][x+1] = tried_sign;
+        }
     }
 }
 
@@ -349,16 +407,18 @@ void Field::show_war_fog()
         std::cout << "\n";
     }
 }
- //
+
 Ship& Field::get_ship(const int &x, const int &y)
 {
-    if(is_ship(x,y))
+    Ship *temp;
+    for(auto &el : ships)
     {
-        for(auto &el : ships)
+        if(el->has_coordinate(x, y))
         {
-            if(el->has_coordinate(x, y))
-                return *el;
+            temp = el;
+            break;
         }
-    }    
+    } 
+    return *temp;
 }
 

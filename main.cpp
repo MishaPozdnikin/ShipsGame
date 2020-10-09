@@ -125,6 +125,7 @@ void logic(Field* enemy_field, Field* my_field)
         player_shoot(enemy_field, my_field);
         if (end)return;
         enemy_shoot(my_field);
+        if (end)return;
     }
 }
 
@@ -161,6 +162,7 @@ int main(int argc, char* argv[])
     Field* enemy_field = init_field(height, width);
     std::cout << "Your field:\n";
     my_field->show_field();
+
     std::cout << "\n----------------------------------------------------------\n";
     std::cout << "In order to see enemy's field enter '0'\n\n";
     logic(enemy_field, my_field);
@@ -168,10 +170,13 @@ int main(int argc, char* argv[])
 //    Ship s(2);
 //    s.add_ship_coordinate(0,0);
 //    s.add_ship_coordinate(1,0);
-//    std::cout<<s.get_value(0,0) << "\n";
-//    std::cout<<s.get_value(1,0) << "\n";
-//    s.hit(0,0);
-//    std::cout<<s.get_value(0,0) << "\n";
+//    //std::cout<<s.get_value(0,0) << "\n";
+//    //std::cout<<s.get_value(1,0) << "\n";
+//    //s.hit(0,0);
+//    auto it = s.get_coordinates();
+
+//    std::cout<<it[0].first << " " << it[0].second;
+   
 //    s.hit(1,0);
 //    std::cout<<s.get_value(1,0) << "\n";
 //    std::cout<<s.get_health()<<"\n";
