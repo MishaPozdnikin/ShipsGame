@@ -22,15 +22,9 @@ public:
 
     Ship(const int &deck_num);
 
-    char get_value(const int &x, const int &y);
-
-    void set_value(const int &x, const int &y, const char &value);
-
     int get_health();
 
     int get_deck_number();
-
-    int get_hited_deck_number();
 
     void hit(const int &x, const int &y);
 

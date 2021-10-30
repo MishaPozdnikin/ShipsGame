@@ -1,10 +1,14 @@
 #include "Field.h"
+
+#include <Windows.h>
+
 #include "Ship.h"
 
-Field::Field() : height(0),
-    width(0)
+Field::Field() : height(10),
+    width(10)
 {
-
+    create_field(height, width);
+    initialize(field_sign);
 }
 
 Field::Field(const int& height, const int& width)
@@ -199,17 +203,6 @@ void Field::spawn_ships(const int& ship_deck_number, const int& ships_number)
     }
 }
 
-void Field::set_ship_sign(const char& ship_sign)
-{
-    this->ship_sign = ship_sign;
-}
-
-void Field::set_field_sign(const char& field_sign)
-{
-    this->field_sign = field_sign;
-    initialize(field_sign);
-}
-
 bool Field::is_ship(const int& x, const int& y)
 {
     if (arr[y][x] == ship_sign || arr[y][x] == destroyed_sign)
@@ -224,12 +217,14 @@ void Field::destroy_enemys_ship(const int& x, const int& y)
     if (get_ship(x,y).get_health() > 0)
     {
         std::cout << "Hit!\n";
+        Sleep(1000);
     }
     else if (get_ship(x,y).get_health() == 0)
     {
         curr_ships_num--;
         draw_ship_perimetr_with_tried_sign(&get_ship(x,y));
         std::cout << "Destroyed!\n";
+        Sleep(1000);
     }
 }
 
@@ -312,14 +307,6 @@ void Field::destroy_ship(const int& x, const int& y)
     }
 }
 
-
-
-void Field::end()
-{
-    std::cout << "Congratulations, you win!\n";
-    //terminate();
-}
-
 int Field::get_ships_num()
 {
     return curr_ships_num;
@@ -344,13 +331,6 @@ bool Field::is_destroyed(const int &x, const int &y)
     return false;
 }
 
-bool Field::is_hited(const int &x, const int &y)
-{
-    if(get_ship(x,y).get_health() < get_ship(x,y).get_deck_number())
-        return true;
-    return false;
-}
-
 bool Field::is_tried(const int& x, const int& y)
 {
     if (arr[y][x] == tried_sign)
@@ -371,26 +351,6 @@ void Field::try_point(const int& x, const int& y)
 int Field::get_deck_number(const int& x, const int& y)
 {
     return get_ship(x,y).get_deck_number();
-}
-
-int Field::get_hited_deck_number(const int& x, const int& y)
-{
-    return get_ship(x,y).get_hited_deck_number();
-}
-
-bool Field::is_border(const int& x, const int& y)
-{
-    if (arr[y][x] == border_sign) 
-        return true;
-    else return false;
-}
-
-void Field::manual_ship_spawn(const int &x, const int &y)
-{
-    if(arr[y][x] != border_sign && arr[y][x] != ship_sign && x > 1 && x < width + 1 && y > 1 && y < height + 1)
-    {
-
-    }
 }
 
 void Field::show_war_fog()

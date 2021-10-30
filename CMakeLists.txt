@@ -6,4 +6,4 @@ set(CMAKE_CXX_STANDATD 17)
 
 set(CMAKE_CXX_STANDATD_REQUIRED ON)
 
-add_executable(ShipsGame main.cpp Field.cpp Ship.cpp)
+add_executable(ShipsGame main.cpp Field.cpp Ship.cpp Game.cpp)

@@ -11,18 +11,6 @@ Ship::Ship(const int &deck_num)
     health = deck_num;
 }
 
-char Ship::get_value(const int &x, const int &y)
-{
-    std::pair<int, int> p(x,y);
-    return coordinates_with_values.find(p)->second;
-}
-
-void Ship::set_value(const int &x, const int &y, const char &value)
-{
-    std::pair<int, int> p(x,y);
-    coordinates_with_values.find(p)->second = value;
-}
-
 int Ship::get_health()
 {
     return health;
@@ -31,11 +19,6 @@ int Ship::get_health()
 int Ship::get_deck_number()
 {
     return deck_num;
-}
-
-int Ship::get_hited_deck_number()
-{
-    return hited_deck_num;
 }
 
 void Ship::hit(const int &x, const int &y)

@@ -31,10 +31,6 @@ public:
 
     void spawn_ships(const int& ship_type, const int& ships_number);
 
-    void set_ship_sign(const char& ship_sign);
-
-    void set_field_sign(const char& field_sign);
-
     bool is_ship(const int& x, const int& y);
 
     void destroy_ship(const int& x, const int& y);
@@ -43,15 +39,11 @@ public:
 
     void draw_ship_perimetr_with_tried_sign(Ship *sh);
 
-    void end();
-
     int get_ships_num();
 
     bool is_destroyed_sign(const int& x, const int& y);
 
     bool is_destroyed(const int& x, const int& y);
-
-    bool is_hited(const int& x, const int& y);
 
     bool is_tried(const int& x, const int& y);
 
@@ -65,13 +57,9 @@ public:
 
     int get_hited_deck_number(const int& x, const int& y);
 
-    bool is_border(const int& x, const int& y);
-
-    void manual_ship_spawn(const int& x, const int& y);
-
     void show_war_fog();
 
-    Ship& get_ship(const int &x, const int &y);
+    Ship& get_ship(const int& x, const int& y);
 
     ~Field()
     {
