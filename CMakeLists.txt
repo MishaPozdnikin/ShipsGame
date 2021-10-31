@@ -1,9 +1,16 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.22)
+project(ShipsGame)
 
-project(ShipsGame LANGUAGES CXX)
+set(CXXMAKE_C_STANDARD 11)
+set(POSITION_INDEPENDENT_CODE ON)
 
-set(CMAKE_CXX_STANDATD 17)
+enable_testing()
 
-set(CMAKE_CXX_STANDATD_REQUIRED ON)
+include_directories(ships_lib)
+add_subdirectory(ships_lib)
+add_subdirectory(tests)
+add_subdirectory(googletest)
 
-add_executable(ShipsGame main.cpp Field.cpp Ship.cpp Game.cpp)
+add_executable(ShipsGame main.cpp)
+
+target_link_libraries(ShipsGame ShipsGameLib)
